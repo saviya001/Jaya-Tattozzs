@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JAYA TATTOOZ - Premium Tattoo Studio | Hettipola</title> <meta name="description" content="Award-winning custom tattoo studio in Colombo, Sri Lanka. Specializing in unique designs with the highest standards of hygiene. Book your session today!">
+    <link rel="icon" type="assets\images\favicon.ico.png" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style type="text/css">
+        
+        :root {
+            --primary-color: #ff2d75;
+            --secondary-color: #1a1a1a;
+            --background-dark: #0f0f0f; /* Slightly darker black */
+            --text-light: #e0e0e0; /* Slightly softer white */
+            --text-muted: #a0a0a0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden; /*  animations */
+        }
+
+        /* Particle Background Container */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind everything */
+            background-color: var(--background-dark);
+        }
+
+        /* Header Styles */
+        .main-header {
+            position: fixed; /* Changed to fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: rgba(15, 15, 15, 0.8); /* Semi-transparent background initially */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .main-header.scrolled {
+            background-color: rgba(15, 15, 15, 0.95); /* More opaque on scroll */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+            font-weight: 400; /* Regular weight */
+            letter-spacing: 0.5px;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0; /* Adjusted bottom position */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 60%; /* Underline effect width */
+        }
+
+        /* Font Styles */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .text-primary { color: var(--primary-color); }
+        .bg-primary { background-color: var(--primary-color); }
+        .border-primary { border-color: var(--primary-color); }
+        .text-muted { color: var(--text-muted); }
+
+        /* Hero Section */
+        .hero-gradient {
+          
+            padding-top: 150px; 
+            padding-bottom: 80px;
+            position: relative; 
+            z-index: 1; 
+        }
+        .tagline-cursor .typed-cursor {
+            color: var(--primary-color);
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            font-weight: bold;
+            padding: 12px 32px;
+            border-radius: 50px; /* Fully rounded */
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 45, 117, 0.4); /* Primary color shadow */
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        .btn-secondary:hover {
+            background-color: rgba(255, 45, 117, 0.1); /* Subtle primary bg */
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 45, 117, 0.2);
+        }
+
+        /* Section Padding */
+        section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            position: relative; /* For z-index context */
+            z-index: 1; /* Above particle background */
+            overflow: hidden; /* Contain AOS animations */
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--secondary-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+        .artist-card { /* For VanillaTilt */
+            transform-style: preserve-3d;
+             transform: perspective(1000px);
+        }
+
+
+        /* Gallery Image Hover Effect */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+         .gallery-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s ease;
+         }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+         .gallery-item:hover img {
+             transform: scale(1.1);
+         }
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .gallery-item .overlay span {
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+
+        /* Appointment Form */
+        .form-input {
+            background-color: #2a2a2a; /* Darker input background */
+            border: 1px solid #444; /* Subtle border */
+            color: var(--text-light);
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 45, 117, 0.3); /* Primary focus ring */
+        }
+
+        /* Contact Section */
+        #contact .bg-gray-900 {
+            background-color: #1f1f1f; /* Slightly different dark shade */
+        }
+        #contact a {
+            transition: color 0.3s ease;
+        }
+        #contact a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a; /* Even darker footer */
+            color: var(--text-muted);
+            border-top: 1px solid #222;
+        }
+        footer h4 {
+            color: var(--text-light);
+            font-weight: 700; /* Bold footer titles */
+        }
+        footer a:hover {
+            color: var(--primary-color);
+            text-decoration: underline; /* Add underline on hover for footer links */
+        }
+        footer .social-icons a svg {
+            transition: transform 0.3s ease;
+        }
+        footer .social-icons a:hover svg {
+            transform: scale(1.2);
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            animation: zoomIn 0.4s ease;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .main-header nav {
+                justify-content: space-around; /* Better spacing on mobile */
+            }
+             .nav-link {
+                font-size: 0.8rem; /* Smaller nav text */
+                padding: 8px 4px;
+             }
+             .hero-gradient {
+                 padding-top: 120px; /* Adjust for smaller header */
+             }
+            h1 { font-size: 3rem; } /* Adjust heading sizes */
+            h2 { font-size: 2rem; }
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+    <div id="tsparticles"></div>
+
+    <header class="main-header text-center py-4 px-4"> <div class="max-w-6xl mx-auto flex items-center justify-between"> <a href="#home" class="text-2xl font-display font-bold text-primary">JAYA TATTOOZ</a>
+
+            <nav class="flex justify-center space-x-4 md:space-x-6"> <a href="#home" class="nav-link">HOME</a>
+                <a href="#gallery" class="nav-link">GALLERY</a>
+                <a href="#artists" class="nav-link">ARTISTS</a>
+                <a href="#appointment" class="nav-link">APPOINTMENT</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
+                <a href="shop.html" target="_blank" class="nav-link">SHOP</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section id="home" class="hero-gradient text-center">
+            <div class="max-w-4xl mx-auto" data-aos="fade-in" data-aos-duration="1000">
+                 <div class="animate-float mb-6">
+                    <img src="assets/logo.png" alt="JAYA TATTOOZ Logo" class="mx-auto w-32 drop-shadow-lg">
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-display font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
+                    JAYA TATTOOZ
+                </h1>
+                 <p class="text-lg text-muted tracking-widest mb-8 tagline-cursor" data-aos="fade-up" data-aos-delay="200">
+                    ART THAT <span id="tagline"></span>
+                 </p>
+
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-6" data-aos="fade-up" data-aos-delay="400">
+                    <span class="text-primary">CUSTOM</span> TATTOOS <span class="text-primary">CRAFTED</span> WITH PASSION
+                </h2>
+                <p class="text-lg text-muted mb-10 leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
+                    At JAYA TATTOOZ, we transform your ideas into lifelong art. Our award-winning artists specialize in custom designs with the highest standards of hygiene and artistry right here in Hettipola.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-5" data-aos="fade-up" data-aos-delay="800">
+                    <a href="#appointment" class="btn btn-primary">
+                        BOOK A SESSION
+                    </a>
+                    <a href="#gallery" class="btn btn-secondary">
+                        VIEW GALLERY
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 px-6 bg-secondary">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                <div class="md:w-1/2" data-aos="fade-right" data-aos-duration="800">
+                    <h3 class="text-4xl font-display font-bold mb-6">OUR <span class="text-primary">STUDIO</span></h3>
+                    <p class="text-muted mb-5 leading-relaxed">
+                        Established in 2020, JAYA TATTOOZ has rapidly become one of Hettipola's most respected tattoo studios. Our talented artists masterfully blend traditional techniques with modern innovation to create truly unique pieces.
+                    </p>
+                    <p class="text-muted mb-8 leading-relaxed">
+                        Your safety and comfort are paramount. We strictly adhere to the highest standards of hygiene and sterilization, using only premium quality, vegan-friendly inks and single-use needles for every client.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center" data-aos="fade-up" data-aos-delay="100">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span class="text-light">100% Sterile & Safe Environment</span>
+                        </li>
+                        <li class="flex items-center" data-aos="fade-up" data-aos-delay="200">
+                             <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 4v4m-2-2h4M5 11v4m-2-2h4m5 4v4m-2-2h4m5-11l-3 3 3 3M5 17l3 3-3 3"></path></svg>
+                            <span class="text-light">Award-Winning & Experienced Artists</span>
+                        </li>
+                        <li class="flex items-center" data-aos="fade-up" data-aos-delay="300">
+                            <svg class="w-6 h-6 text-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                            <span class="text-light">Unique Custom Designs Tailored For You</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 relative" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="border-4 border-primary rounded-lg overflow-hidden shadow-lg">
+                        <img src="assets\images\gallery\JAYA TATTOOZ Studio Interior.jpeg" alt="JAYA TATTOOZ Studio Interior" class="w-full h-auto transform hover:scale-110 transition-transform duration-500 ease-in-out">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-primary text-black py-2 px-6 font-bold rotate-[-3deg] shadow-md text-sm md:text-base">
+                        EST. 2020
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-20 px-6 bg-background-dark text-white">
+            <header class="text-center mb-12">
+                <h2 class="text-4xl font-display font-bold mb-4" data-aos="fade-up">Gallery</h2>
+                <p class="text-lg text-muted" data-aos="fade-up" data-aos-delay="100">Explore some of our recent creations</p>
+            </header>
+            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500">
+                    <img src="assets/images/gallery/Tattoo 1.jpg" alt="Tattoo 1" data-src="assets/images/gallery/Tattoo 1.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="50">
+                    <img src="assets/images/gallery/Tattoo 2.jpg" alt="Tattoo 2" data-src="assets/images/gallery/Tattoo 2.jpg">
+                     <div class="overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="100">
+                    <img src="assets/images/gallery/Tattoo 3.jpg" alt="Tattoo 3" data-src="assets/images/gallery/Tattoo 3.jpg">
+                     <div class="overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="150">
+                    <img src="assets/images/gallery/Tattoo 4.jpg" alt="Tattoo 4" data-src="assets/images/gallery/Tattoo 4.jpg">
+                     <div class="overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="200">
+                    <img src="assets/images/gallery/Tattoo 5.jpg" alt="Tattoo 5" data-src="assets/images/gallery/Tattoo 5.jpg">
+                     <div class="overlay"><span>View</span></div>
+                </div>
+                 <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="250">
+                    <img src="assets/images/gallery/Tattoo 6.jpg" alt="Tattoo 6" data-src="assets/images/gallery/Tattoo 6.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="300">
+                    <img src="assets/images/gallery/Tattoo 7.jpg" alt="Tattoo 7" data-src="assets/images/gallery/Tattoo 7.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="350">
+                    <img src="assets/images/gallery/Tattoo 8.jpg" alt="Tattoo 8" data-src="assets/images/gallery/Tattoo 8.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                 <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="400">
+                    <img src="assets/images/gallery/Tattoo 9.jpg" alt="Tattoo 9" data-src="assets/images/gallery/Tattoo 9.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                 <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="450">
+                    <img src="assets/images/gallery/Tattoo 10.jpg" alt="Tattoo 10" data-src="assets/images/gallery/Tattoo 10.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                 <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="500">
+                    <img src="assets/images/gallery/Tattoo 11.jpg" alt="Tattoo 11" data-src="assets/images/gallery/Tattoo 11.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+                 <div class="gallery-item" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="550">
+                    <img src="assets/images/gallery/Tattoo 12.jpg" alt="Tattoo 12" data-src="assets/images/gallery/Tattoo 12.jpg">
+                    <div class="overlay"><span>View</span></div>
+                </div>
+            </div>
+        </section>
+
+         <div id="myLightbox" class="lightbox">
+            <span class="lightbox-close">&times;</span>
+            <img class="lightbox-content" id="lightboxImage">
+        </div>
+
+
+        <section id="artists" class="py-20 px-6 bg-secondary text-white">
+            <title>Our Artists – JAYA TATTOOZ</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+          </head>
+          <body class="bg-black text-white px-6 py-10">
+          
+            <h1 class="text-5xl text-yellow-400 font-extrabold text-center mb-14 tracking-wider drop-shadow-[0_4px_4px_rgba(255,255,0,0.3)]">Meet Our Tattoo Artists</h1>
+          
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          
+              <!-- Artist 1 -->
+              <div class="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl group hover:shadow-yellow-500/40 transition-all duration-300">
+                <div class="overflow-hidden">
+                  <img src="assets/images/gallery/upscalemedia-transformed.jpeg" alt="Praveen Jayabahu"
+                       class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"/>
+                </div>
+                <div class="p-6">
+                  <h2 class="text-3xl font-bold text-white mb-1">Praveen Jayabahu</h2>
+                  <p class="text-sm text-yellow-300 mb-3">Age 24 • 5 Years Experience</p>
+                  <p class="text-base text-gray-300 mb-4">A passionate and visionary artist who blends emotion with imagination. Every stroke tells a story, constantly evolving and pushing boundaries.</p>
+                  <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/share/165jkmrBQs/?mibextid=wwXIfr" target="_blank" class="text-yellow-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/praveena_jayabahu/#" target="_blank" class="text-yellow-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Artist 2 -->
+              <div class="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl group hover:shadow-yellow-500/40 transition-all duration-300">
+                <div class="overflow-hidden">
+                  <img src="assets/images/gallery/upscalemedia-transformed (1).jpeg" alt="Nipun Lakshitha"
+                       class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"/>
+                </div>
+                <div class="p-6">
+                  <h2 class="text-3xl font-bold text-white mb-1">Nipun Lakshitha</h2>
+                  <p class="text-sm text-yellow-300 mb-3">Age 21 • 1 Year Experience</p>
+                  <p class="text-base text-gray-300 mb-4">A rising talent with bold creativity and a passion for expression. Nipun brings a unique perspective and strong artistic drive.</p>
+                  <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/share/1Bn2nB3Vwz/?mibextid=wwXIfr" target="_blank" class="text-yellow-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/nipun_l_karunanayaka?igsh=ZjUyMnZia3pmbmhm" target="_blank" class="text-yellow-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+        </section>
+
+           <!-- Appointment Page -->
+    <section id="appointment" class="page px-6 py-12">
+        <div class="max-w-2xl mx-auto bg-gray-800 p-8 rounded-xl shadow-lg">
+          <h2 class="text-4xl font-display font-bold mb-6 text-center">BOOK AN <span class="text-primary">APPOINTMENT</span></h2>
+          <p class="text-gray-400 text-center mb-8">Fill out the form below and we'll get back to you soon</p>
+          
+          <form action="https://formsubmit.co/praveenajayabahu@gmail.com" method="POST" class="space-y-6">
+            <div>
+              <label for="name" class="block text-gray-300 mb-2">Full Name</label>
+              <input type="text" id="name" name="name" required 
+                     class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-primary focus:outline-none text-white">
+            </div>
+            
+            <div>
+              <label for="email" class="block text-gray-300 mb-2">Email</label>
+              <input type="email" id="email" name="email" required 
+                     class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-primary focus:outline-none text-white">
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-gray-300 mb-2">Phone Number</label>
+              <input type="tel" id="phone" name="phone" 
+                     class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-primary focus:outline-none text-white">
+            </div>
+            
+            <div>
+              <label for="date" class="block text-gray-300 mb-2">Preferred Date</label>
+              <input type="date" id="date" name="date" 
+                     class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-primary focus:outline-none text-white">
+            </div>
+            
+            <div>
+              <label for="message" class="block text-gray-300 mb-2">Tattoo Description</label>
+              <textarea id="message" name="message" rows="4" 
+                        class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-primary focus:outline-none text-white"></textarea>
+            </div>
+            
+            <button type="submit" 
+                    class="w-full bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-6 rounded transition-all duration-300 transform hover:scale-105">
+              SUBMIT REQUEST
+            </button>
+          </form>
+        </div>
+      </section>
+     
+
+        <section id="contact" class="py-20 px-6 bg-secondary text-white">
+            <script src="https://cdn.tailwindcss.com"></script>
+            <script>
+              tailwind.config = {
+                theme: {
+                  extend: {
+                    colors: {
+                      primary: '#f59e0b', // yellow-500
+                      secondary: '#1f2937', // gray-800
+                      accent: '#3b82f6' // blue-500
+                    },
+                    animation: {
+                      'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                      'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                      float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-10px)' }
+                      }
+                    }
+                  }
+                }
+              }
+            </script>
+            <style>
+              .contact-card {
+                background: linear-gradient(145deg, #111827 0%, #1f2937 100%);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+              }
+              .social-icon {
+                transition: all 0.3s ease;
+              }
+              .social-icon:hover {
+                transform: translateY(-3px) scale(1.1);
+              }
+              .map-container {
+                filter: grayscale(20%) contrast(110%) brightness(90%);
+              }
+            </style>
+          </head>
+          <body class="bg-black text-white min-h-screen flex flex-col">
+          
+            <!-- Main Content -->
+            <main class="flex-grow flex items-center justify-center px-4 py-12 sm:py-20">
+              <div class="max-w-4xl w-full">
+                <div class="text-center mb-12">
+                  <h1 class="text-4xl sm:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                    Get In Touch
+                  </h1>
+                  <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Ready to start your tattoo journey? Contact us for consultations, appointments, or any questions.
+                  </p>
+                </div>
+          
+                <div class="grid md:grid-cols-2 gap-8">
+                  <!-- Contact Card -->
+                  <div class="contact-card rounded-2xl p-8 space-y-6 animate-float">
+                    <div>
+                      <h2 class="text-2xl font-bold mb-2 text-primary">Studio Information</h2>
+                      <p class="text-gray-300">Visit our studio for a consultation or appointment</p>
+                    </div>
+          
+                    <div class="space-y-4">
+                      <div class="flex items-start space-x-4">
+                        <div class="text-primary mt-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 class="font-semibold">Address</h3>
+                          <p class="text-gray-400">Chilaw-Kurunegala Road, 60430,<br>Sri Lanka</p>
+                        </div>
+                      </div>
+          
+                      <div class="flex items-start space-x-4">
+                        <div class="text-primary mt-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 class="font-semibold">Phone</h3>
+                          <p class="text-gray-400">+94718515978</p>
+                        </div>
+                      </div>
+          
+                      <div class="flex items-start space-x-4">
+                        <div class="text-primary mt-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 class="font-semibold">Email</h3>
+                          <p class="text-gray-400">
+                            <a href="mailto: praveenajayabahu@gmail.com" class="hover:text-accent transition"> praveenajayabahu@gmail.com</a><br>
+                            
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div>
+                       <!-- jaya media -->
+                      <h3 class="text-xl font-bold mb-4 text-center text-primary">Connect With Us</h3>
+                      <div class="flex justify-center space-x-6">
+                          <a href="https://www.facebook.com/jayatattooz?mibextid=LQQJ4d&rdid=Eghm0r6lkRB0hj7u&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FPfpdBENd1zzfkMgS%2F%3Fmibextid%3DLQQJ4d#" target="_blank" rel="noopener noreferrer" 
+                             class="social-icon text-blue-500 hover:text-blue-400" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.6c0-2.4 1.5-3.7 3.6-3.7 1 0 1.8.1 2.1.1v2.4h-1.4c-1.1 0-1.3.5-1.3 1.2v1.9h2.6l-.3 2.9h-2.3v7A10 10 0 0 0 22 12Z"/>
+                            </svg>
+                          </a>
+                          
+                          <a href="https://www.instagram.com/jaya_tattooz_studio/#" target="_blank" rel="noopener noreferrer" 
+                             class="social-icon text-pink-500 hover:text-pink-400" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7Zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3Zm10.5 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/>
+                            </svg>
+                          </a>
+                          
+                          <a href="https://wa.me/+94718515978" target="_blank" rel="noopener noreferrer" 
+                             class="social-icon text-green-500 hover:text-green-400" aria-label="WhatsApp">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                          </a>
+                          
+                          <a href="https://www.tiktok.com/@jaya_tattooz?_t=8pRhfSAFb4W&_r=1" target="_blank" rel="noopener noreferrer" 
+                             class="social-icon text-purple-400 hover:text-purple-300" aria-label="TikTok">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M14.6 3c0 3.1 2.5 5.6 5.6 5.6v3a8.6 8.6 0 0 1-4.4-1.2v5.8c0 3.3-2.6 6-6 6s-6-2.7-6-6 2.7-6 6-6v3a3 3 0 1 0 3 3V3h1.8Z"/>
+                            </svg>
+                          </a>
+
+                          <a href="https://youtube.com/@jayatattooz?si=9kPQpptrbmTCwCUF" target="_blank" rel="noopener noreferrer" 
+                          class="social-icon text-red-500 hover:text-Black-300" aria-label="Youtube">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                           <path d="M10 15.5v-7l6 3.5-6 3.5Zm12-3.5c0 2.4-.2 4.3-.7 5.8-.3.8-.8 1.4-1.5 1.7C18.6 20 12 20 12 20s-6.6 0-7.8-.5c-.8-.3-1.3-.9-1.5-1.7C2.2 16.3 2 14.4 2 12s.2-4.3.7-5.8c.3-.8.8-1.4 1.5-1.7C5.4 4 12 4 12 4s6.6 0 7.8.5c.8.3 1.3.9 1.5 1.7.5 1.5.7 3.4.7 5.8Z"/>
+                         </svg>
+                       </a>
+                        </div>
+                    </div>
+                  </div>
+          
+                 
+                  <div class="space-y-8">
+                    <!-- Map -->
+                    <div class="rounded-2xl overflow-hidden map-container h-64 md:h-full">
+                      <iframe src="https://maps.google.com/maps?q=JAYA%20TATTOOZ&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+          
+                   
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          
+           
+          
+            <!-- WhatsApp Floating Button -->
+            <a href="https://wa.me/+94718515978" 
+               class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 z-40"
+               aria-label="Chat on WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </a>
+          
+            <script>
+              // Simple animation for elements when they come into view
+              document.addEventListener('DOMContentLoaded', function() {
+                const animateOnScroll = function() {
+                  const elements = document.querySelectorAll('.contact-card, .map-container');
+                  elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                      element.style.opacity = '1';
+                      element.style.transform = 'translateY(0)';
+                    }
+                  });
+                };
+                
+                // Set initial state
+                const animatedElements = document.querySelectorAll('.contact-card, .map-container');
+                animatedElements.forEach(el => {
+                  el.style.opacity = '0';
+                  el.style.transform = 'translateY(20px)';
+                  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                });
+                
+                // Check on load
+                animateOnScroll();
+                
+                // Check on scroll
+                window.addEventListener('scroll', animateOnScroll);
+              });
+            </script>
+          </body>
+          </html>
+        </section>
+
+    </main>
+
+    <footer class="py-16 px-6"> <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+            <div class="md:col-span-2">
+                <a href="#home" class="inline-block mb-5">
+                    <img src="assets/logo.png" alt="JAYA TATTOOZ Footer Logo" class="w-24"> </a>
+                <p class="mb-5">
+                    JAYA TATTOOZ: Hettipola's premier destination for high-quality custom tattoo art. We bring your vision to life with passion and precision.
+                </p>
+                
+            </div>
+
+            <div>
+                <h4 class="text-lg font-display font-bold mb-5">QUICK LINKS</h4>
+                <ul class="space-y-3">
+                    <li><a href="#home" class="hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
+                    <li><a href="#gallery" class="hover:text-primary transition-colors">Gallery</a></li>
+                    <li><a href="#artists" class="hover:text-primary transition-colors">Artists</a></li>
+                    <li><a href="#appointment" class="hover:text-primary transition-colors">Appointment</a></li>
+                    <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+                    <li><a href="shop.html" target="_blank" class="hover:text-primary transition-colors">Shop</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div>
+                    <h4 class="text-lg font-display font-bold mb-5">OPENING HOURS</h4>
+                    <ul class="space-y-1.5 text-sm">
+                        <li class="flex justify-between"><span>Monday - Friday</span> <span class="text-light font-medium">9 AM - 10 PM</span></li>
+                        <li class="flex justify-between"><span>Saturday & Sunday</span> <span class="text-light font-medium">9 AM - 10 PM</span></li>
+                        
+                    </ul>
+                </div>
+                </address>
+            </div>
+
+             
+        </div>
+
+        <div class="max-w-6xl mx-auto pt-8 mt-10 border-t border-gray-800 text-center text-sm">
+            <p>&copy; <span id="currentYear"></span> JAYA TATTOOZ. All Rights Reserved. Designed with S creations<span class="text-primary"></span></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- Initialize AOS ---
+        AOS.init({
+            duration: 800, // Animation duration
+            once: true, // Whether animation should happen only once - while scrolling down
+            offset: 50, // Offset (in px) from the original trigger point
+            delay: 100, // values from 0 to 3000, with step 50ms
+        });
+
+        // --- Initialize Typed.js ---
+        if (document.getElementById('tagline')) {
+            var typed = new Typed('#tagline', {
+                strings: ['STAYS WITH YOU.', 'TELLS YOUR STORY.', 'IS FOREVER.'],
+                typeSpeed: 60,
+                backSpeed: 40,
+                backDelay: 1500,
+                loop: true,
+                showCursor: true,
+                cursorChar: '_',
+            });
+        }
+
+        // --- Initialize Vanilla Tilt ---
+        VanillaTilt.init(document.querySelectorAll(".artist-card"), {
+            max: 15,    // Max tilt rotation (degrees)
+            speed: 400, // Speed of the enter/exit transition
+            glare: true, // If it should have a "glare" effect
+            "max-glare": 0.4 // The glare opacity (0.1 = 10%, 1 = 100%)
+        });
+
+         // --- Sticky Header ---
+        const header = document.querySelector('.main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // Add 'scrolled' class after scrolling 50px
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- Simple Lightbox ---
+        const lightbox = document.getElementById('myLightbox');
+        const lightboxImg = document.getElementById('lightboxImage');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const closeBtn = document.querySelector('.lightbox-close');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').getAttribute('data-src'); // Use data-src
+                lightboxImg.src = imgSrc;
+                lightbox.style.display = 'flex'; // Use flex to center vertically
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close lightbox when clicking the close button or outside the image
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+            lightboxImg.src = ''; // Clear image source
+            document.body.style.overflow = 'auto'; // Restore background scroll
+        }
+
+        if(closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
+        }
+
+        if(lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) { // Check if click is on the background overlay
+                    closeLightbox();
+                }
+            });
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                closeLightbox();
+            }
+        });
+
+        // --- Current Year in Footer ---
+        if (document.getElementById('currentYear')) {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        }
+
+        // --- tsParticles Initialization ---
+         tsParticles.load("tsparticles", {
+            fpsLimit: 60,
+            particles: {
+                number: {
+                    value: 30, // Reduced particle count
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#444444" // Dark grey particles
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.2, // More subtle opacity
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 0.5,
+                        opacity_min: 0.05,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 2,
+                    random: true,
+                    anim: {
+                        enable: false,
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#555555", // Darker lines
+                    opacity: 0.15, // Subtle lines
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 0.6, // Slower movement
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse" // Particles move away from cursor
+                    },
+                    onclick: {
+                        enable: false, // Disable click interaction
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 80, // Smaller repulsion distance
+                        duration: 0.4
+                    }
+                }
+            },
+            detectRetina: true
+        });
+
+    }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
