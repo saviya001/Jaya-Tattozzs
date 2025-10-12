@@ -313,16 +313,16 @@
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .main-header nav {
-                justify-content: space-around; /* Better spacing on mobile */
+                justify-content: space-around; 
             }
              .nav-link {
-                font-size: 0.8rem; /* Smaller nav text */
+                font-size: 0.8rem; 
                 padding: 8px 4px;
              }
              .hero-gradient {
-                 padding-top: 120px; /* Adjust for smaller header */
+                 padding-top: 120px; 
              }
-            h1 { font-size: 3rem; } /* Adjust heading sizes */
+            h1 { font-size: 3rem; } 
             h2 { font-size: 2rem; }
         }
 
@@ -575,9 +575,9 @@
                 theme: {
                   extend: {
                     colors: {
-                      primary: '#f59e0b', // yellow-500
-                      secondary: '#1f2937', // gray-800
-                      accent: '#3b82f6' // blue-500
+                      primary: '#f59e0b', 
+                      secondary: '#1f2937', 
+                      accent: '#3b82f6' 
                     },
                     animation: {
                       'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -717,7 +717,7 @@
           
                  
                   <div class="space-y-8">
-                    <!-- Map -->
+                    
                     <div class="rounded-2xl overflow-hidden map-container h-64 md:h-full">
                       <iframe src="https://maps.google.com/maps?q=JAYA%20TATTOOZ&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                               width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -734,7 +734,7 @@
           
            
           
-            <!-- WhatsApp Floating Button -->
+            
             <a href="https://wa.me/+94718515978" 
                class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 z-40"
                aria-label="Chat on WhatsApp">
@@ -744,7 +744,7 @@
             </a>
           
             <script>
-              // Simple animation for elements when they come into view
+              
               document.addEventListener('DOMContentLoaded', function() {
                 const animateOnScroll = function() {
                   const elements = document.querySelectorAll('.contact-card, .map-container');
@@ -759,7 +759,7 @@
                   });
                 };
                 
-                // Set initial state
+               
                 const animatedElements = document.querySelectorAll('.contact-card, .map-container');
                 animatedElements.forEach(el => {
                   el.style.opacity = '0';
@@ -767,10 +767,10 @@
                   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 });
                 
-                // Check on load
+              
                 animateOnScroll();
                 
-                // Check on scroll
+                
                 window.addEventListener('scroll', animateOnScroll);
               });
             </script>
@@ -833,13 +833,13 @@
 
         // --- Initialize AOS ---
         AOS.init({
-            duration: 800, // Animation duration
-            once: true, // Whether animation should happen only once - while scrolling down
-            offset: 50, // Offset (in px) from the original trigger point
-            delay: 100, // values from 0 to 3000, with step 50ms
+            duration: 800, 
+            once: true, 
+            offset: 50, 
+            delay: 100, 
         });
 
-        // --- Initialize Typed.js ---
+        
         if (document.getElementById('tagline')) {
             var typed = new Typed('#tagline', {
                 strings: ['STAYS WITH YOU.', 'TELLS YOUR STORY.', 'IS FOREVER.'],
@@ -852,7 +852,7 @@
             });
         }
 
-        // --- Initialize Vanilla Tilt ---
+      
         VanillaTilt.init(document.querySelectorAll(".artist-card"), {
             max: 15,    // Max tilt rotation (degrees)
             speed: 400, // Speed of the enter/exit transition
@@ -860,17 +860,17 @@
             "max-glare": 0.4 // The glare opacity (0.1 = 10%, 1 = 100%)
         });
 
-         // --- Sticky Header ---
+        
         const header = document.querySelector('.main-header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { // Add 'scrolled' class after scrolling 50px
+            if (window.scrollY > 50) { 
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
         });
 
-        // --- Simple Lightbox ---
+        
         const lightbox = document.getElementById('myLightbox');
         const lightboxImg = document.getElementById('lightboxImage');
         const galleryItems = document.querySelectorAll('.gallery-item');
@@ -878,7 +878,7 @@
 
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
-                const imgSrc = item.querySelector('img').getAttribute('data-src'); // Use data-src
+                const imgSrc = item.querySelector('img').getAttribute('data-src'); 
                 lightboxImg.src = imgSrc;
                 lightbox.style.display = 'flex'; // Use flex to center vertically
                 document.body.style.overflow = 'hidden';
@@ -911,12 +911,12 @@
             }
         });
 
-        // --- Current Year in Footer ---
+     
         if (document.getElementById('currentYear')) {
             document.getElementById('currentYear').textContent = new Date().getFullYear();
         }
 
-        // --- tsParticles Initialization ---
+
          tsParticles.load("tsparticles", {
             fpsLimit: 60,
             particles: {
@@ -953,13 +953,13 @@
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: "#555555", // Darker lines
-                    opacity: 0.15, // Subtle lines
+                    color: "#555555", 
+                    opacity: 0.15, 
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 0.6, // Slower movement
+                    speed: 0.6, 
                     direction: "none",
                     random: true,
                     straight: false,
@@ -975,16 +975,16 @@
                 events: {
                     onhover: {
                         enable: true,
-                        mode: "repulse" // Particles move away from cursor
+                        mode: "repulse" 
                     },
                     onclick: {
-                        enable: false, // Disable click interaction
+                        enable: false, 
                     },
                     resize: true
                 },
                 modes: {
                     repulse: {
-                        distance: 80, // Smaller repulsion distance
+                        distance: 80, 
                         duration: 0.4
                     }
                 }
@@ -992,7 +992,7 @@
             detectRetina: true
         });
 
-    }); // End DOMContentLoaded
+    }); 
     </script>
 
 </body>
