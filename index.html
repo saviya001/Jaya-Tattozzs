@@ -84,10 +84,10 @@
             transition: width 0.3s ease;
         }
         .nav-link:hover::after {
-            width: 60%; /* Underline effect width */
+            width: 60%; 
         }
 
-        /* Font Styles */
+        
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
         }
@@ -96,7 +96,7 @@
         .border-primary { border-color: var(--primary-color); }
         .text-muted { color: var(--text-muted); }
 
-        /* Hero Section */
+        
         .hero-gradient {
           
             padding-top: 150px; 
@@ -115,12 +115,12 @@
             100% { opacity: 1; }
         }
 
-        /* Buttons */
+        
         .btn {
             display: inline-block;
             font-weight: bold;
             padding: 12px 32px;
-            border-radius: 50px; /* Fully rounded */
+            border-radius: 50px; 
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -135,7 +135,7 @@
             background-color: transparent;
             color: var(--primary-color);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 45, 117, 0.4); /* Primary color shadow */
+            box-shadow: 0 6px 20px rgba(255, 45, 117, 0.4); 
         }
         .btn-secondary {
             background-color: transparent;
@@ -143,22 +143,22 @@
             border: 2px solid var(--primary-color);
         }
         .btn-secondary:hover {
-            background-color: rgba(255, 45, 117, 0.1); /* Subtle primary bg */
+            background-color: rgba(255, 45, 117, 0.1); 
             color: var(--primary-color);
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 45, 117, 0.2);
         }
 
-        /* Section Padding */
+        
         section {
             padding-top: 80px;
             padding-bottom: 80px;
-            position: relative; /* For z-index context */
-            z-index: 1; /* Above particle background */
-            overflow: hidden; /* Contain AOS animations */
+            position: relative; 
+            z-index: 1; 
+            overflow: hidden; 
         }
 
-        /* Card Styles */
+        
         .card {
             background-color: var(--secondary-color);
             border-radius: 12px;
@@ -250,17 +250,17 @@
 
         /* Footer */
         footer {
-            background-color: #0a0a0a; /* Even darker footer */
+            background-color: #0a0a0a; 
             color: var(--text-muted);
             border-top: 1px solid #222;
         }
         footer h4 {
             color: var(--text-light);
-            font-weight: 700; /* Bold footer titles */
+            font-weight: 700; 
         }
         footer a:hover {
             color: var(--primary-color);
-            text-decoration: underline; /* Add underline on hover for footer links */
+            text-decoration: underline; 
         }
         footer .social-icons a svg {
             transition: transform 0.3s ease;
@@ -269,9 +269,9 @@
             transform: scale(1.2);
         }
 
-        /* Lightbox Modal Styles */
+        /* Lightbox  Styles */
         .lightbox {
-            display: none; /* Hidden by default */
+            display: none; 
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -310,7 +310,7 @@
             to {transform: scale(1); opacity: 1;}
         }
 
-        /* Responsive Adjustments */
+        
         @media (max-width: 768px) {
             .main-header nav {
                 justify-content: space-around; 
@@ -831,7 +831,7 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- Initialize AOS ---
+        
         AOS.init({
             duration: 800, 
             once: true, 
@@ -880,16 +880,16 @@
             item.addEventListener('click', () => {
                 const imgSrc = item.querySelector('img').getAttribute('data-src'); 
                 lightboxImg.src = imgSrc;
-                lightbox.style.display = 'flex'; // Use flex to center vertically
+                lightbox.style.display = 'flex'; 
                 document.body.style.overflow = 'hidden';
             });
         });
 
-        // Close lightbox when clicking the close button or outside the image
+        
         const closeLightbox = () => {
             lightbox.style.display = 'none';
-            lightboxImg.src = ''; // Clear image source
-            document.body.style.overflow = 'auto'; // Restore background scroll
+            lightboxImg.src = ''; 
+            document.body.style.overflow = 'auto'; 
         }
 
         if(closeBtn) {
@@ -898,13 +898,13 @@
 
         if(lightbox) {
             lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) { // Check if click is on the background overlay
+                if (e.target === lightbox) { 
                     closeLightbox();
                 }
             });
         }
 
-        // Close lightbox with Escape key
+       
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.style.display === 'flex') {
                 closeLightbox();
@@ -921,20 +921,20 @@
             fpsLimit: 60,
             particles: {
                 number: {
-                    value: 30, // Reduced particle count
+                    value: 30, 
                     density: {
                         enable: true,
                         value_area: 800
                     }
                 },
                 color: {
-                    value: "#444444" // Dark grey particles
+                    value: "#444444" 
                 },
                 shape: {
                     type: "circle"
                 },
                 opacity: {
-                    value: 0.2, // More subtle opacity
+                    value: 0.2, 
                     random: true,
                     anim: {
                         enable: true,
