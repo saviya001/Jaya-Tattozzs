@@ -3,101 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Shop </title>
+    <title>Our Shop - JAYA TATTOOZ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom Global Styles */
         body {
-            background-color: #030712; /* Very dark base */
+            background-color: #030712;
             background-image: radial-gradient(circle at top left, rgba(55, 65, 81, 0.4) 0%, transparent 30%),
                               radial-gradient(circle at bottom right, rgba(30, 41, 59, 0.5) 0%, transparent 40%);
-            color: #e5e7eb; /* Light gray text */
+            color: #e5e7eb;
         }
-
-        /* Custom Animations */
         @keyframes fade-in-up {
-            from {
-                opacity: 0;
-                transform: translateY(40px); /* Slightly increased distance */
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         .animate-fade-in-up {
-            animation: fade-in-up 0.8s ease-out forwards; /* 'forwards' keeps the final state */
-            opacity: 0; /* Start hidden */
+            animation: fade-in-up 0.8s ease-out forwards;
+            opacity: 0;
         }
-
-        /* Subtle Glow for Button on Hover/Focus */
-       /* (Optional - can add if you like more glow)
-        @keyframes button-glow {
-            0% { box-shadow: 0 0 5px rgba(163, 230, 53, 0.3); }
-            50% { box-shadow: 0 0 15px rgba(163, 230, 53, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(163, 230, 53, 0.3); }
-        }
-        .glow-on-hover:hover {
-             animation: button-glow 1.5s infinite ease-in-out;
-        } */
-
-        /* Improve performance for animations */
-        .will-change-transform {
-            will-change: transform;
-        }
-        .will-change-opacity {
-            will-change: opacity;
-        }
-        .will-change-shadow {
-             will-change: box-shadow;
-        }
-
+        .will-change-transform { will-change: transform; }
+        .will-change-opacity { will-change: opacity; }
+        .will-change-shadow { will-change: box-shadow; }
     </style>
 </head>
-<body class="overflow-x-hidden"> <main class="relative z-10 py-20 px-4 min-h-screen">
-    <div class="max-w-7xl mx-auto">
-        <h1 class="text-5xl md:text-6xl font-bold text-center mb-16 text-white tracking-tight animate-fade-in-up will-change-opacity will-change-transform" style="animation-delay: 0.1s;">
-            Our  Products
-        </h1>
+<body class="overflow-x-hidden">
+    <main class="relative z-10 py-20 px-4 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-16">
+                 <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight animate-fade-in-up will-change-opacity will-change-transform" style="animation-delay: 0.1s;">
+                    Our Products
+                </h1>
+                <a href="index.html" class="text-lime-400 hover:text-lime-300 transition-colors mt-4 inline-block">&larr; Back to Home</a>
+            </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10">
-
-            <div class="group bg-gradient-to-br from-gray-800/70 via-gray-900/80 to-black/90 rounded-3xl shadow-lg p-1 transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-lime-500/20 hover:shadow-2xl animate-fade-in-up will-change-transform will-change-shadow" style="animation-delay: 0.3s;">
-                <div class="relative rounded-2xl bg-gray-900 overflow-hidden h-full flex flex-col border border-transparent group-hover:border-lime-500/30 transition-colors duration-500 ease-out">
-                    <div class="overflow-hidden">
-                         <img src="assets\S\Product 1.png" alt="Product 1" class="w-full h-64 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 will-change-transform">
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold text-white mb-2">Name 1</h3>
-                        <p class="text-gray-400 mb-4 text-sm flex-grow">Short description about the product goes here. More text can be added.</p>
-                        <p class="text-2xl font-bold text-lime-400 mb-5">Rs 700</p>
-                        <a href="https://wa.me/94718515978"   target="_blank"                      rel="noopener noreferrer"           class="block w-full mt-auto bg-lime-500 text-black py-2.5 px-4 font-semibold rounded-lg text-center hover:bg-lime-400 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-gray-900 active:scale-95 active:bg-lime-600">
-                            Buy Now
-                        </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10">
+                <div class="group bg-gradient-to-br from-gray-800/70 via-gray-900/80 to-black/90 rounded-3xl shadow-lg p-1 transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-lime-500/20 hover:shadow-2xl animate-fade-in-up will-change-transform will-change-shadow" style="animation-delay: 0.3s;">
+                    <div class="relative rounded-2xl bg-gray-900 overflow-hidden h-full flex flex-col border border-transparent group-hover:border-lime-500/30 transition-colors duration-500 ease-out">
+                        <div class="overflow-hidden">
+                            <img src="assets/S/Product 1.png" alt="Product 1" class="w-full h-64 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 will-change-transform">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-white mb-2">Product Name 1</h3>
+                            <p class="text-gray-400 mb-4 text-sm flex-grow">Short description about the product goes here. More text can be added.</p>
+                            <p class="text-2xl font-bold text-lime-400 mb-5">Rs 700</p>
+                            <a href="https://wa.me/94718515978" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-lime-500 text-black py-2.5 px-4 font-semibold rounded-lg text-center hover:bg-lime-400 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-gray-900 active:scale-95 active:bg-lime-600">
+                                Buy Now
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="group bg-gradient-to-br from-gray-800/70 via-gray-900/80 to-black/90 rounded-3xl shadow-lg p-1 transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-lime-500/20 hover:shadow-2xl animate-fade-in-up will-change-transform will-change-shadow" style="animation-delay: 0.45s;">
-                 <div class="relative rounded-2xl bg-gray-900 overflow-hidden h-full flex flex-col border border-transparent group-hover:border-lime-500/30 transition-colors duration-500 ease-out">
-                     <div class="overflow-hidden">
-                        <img src="assets\S\Product 2.png" alt="Product 2" class="w-full h-64 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 will-change-transform">
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold text-white mb-2"> Name 2 </h3>
-                        <p class="text-gray-400 mb-4 text-sm flex-grow">Another product description, maybe a bit longer this time.</p>
-                        <p class="text-2xl font-bold text-lime-400 mb-5">Rs 700</p>
-                        <a href="https://wa.me/94718515978"   target="_blank"                      rel="noopener noreferrer"           class="block w-full mt-auto bg-lime-500 text-black py-2.5 px-4 font-semibold rounded-lg text-center hover:bg-lime-400 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-gray-900 active:scale-95 active:bg-lime-600">
-                            Buy Now
-                        </a>
+                <div class="group bg-gradient-to-br from-gray-800/70 via-gray-900/80 to-black/90 rounded-3xl shadow-lg p-1 transition-all duration-500 ease-out hover:-translate-y-3 hover:shadow-lime-500/20 hover:shadow-2xl animate-fade-in-up will-change-transform will-change-shadow" style="animation-delay: 0.45s;">
+                    <div class="relative rounded-2xl bg-gray-900 overflow-hidden h-full flex flex-col border border-transparent group-hover:border-lime-500/30 transition-colors duration-500 ease-out">
+                        <div class="overflow-hidden">
+                            <img src="assets/S/Product 2.png" alt="Product 2" class="w-full h-64 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 will-change-transform">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-white mb-2">Product Name 2</h3>
+                            <p class="text-gray-400 mb-4 text-sm flex-grow">Another product description, maybe a bit longer this time.</p>
+                            <p class="text-2xl font-bold text-lime-400 mb-5">Rs 700</p>
+                            <a href="https://wa.me/94718515978" target="_blank" rel="noopener noreferrer" class="block w-full mt-auto bg-lime-500 text-black py-2.5 px-4 font-semibold rounded-lg text-center hover:bg-lime-400 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-lime-400 focus:ring-offset-2 focus:ring-offset-gray-900 active:scale-95 active:bg-lime-600">
+                                Buy Now
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
             </div>
-    </div>
-</main>
-
+        </div>
+    </main>
 </body>
 </html>
